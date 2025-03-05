@@ -40,6 +40,7 @@ touch script_migration.sh
 chmod +x script_migration.sh
 ```
 In the ``script_migration.sh`` file, we write our script for migrating a repository from GitLab to GitHub.
+
 💎 Let's look at the key points:
 - checking for tokens
 ```
