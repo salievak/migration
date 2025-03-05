@@ -104,4 +104,26 @@ for example ``list_migration.txt``
 #gitlab_repo_url github_repo_name
 https://gitlab.com/testgr/migrationtest1.git migrationtest1
 ```
+We use the following script for mass migration (file ``all_migration.sh``):
+```
+INPUT_FILE="list_migration.txt"
+while IFS= read -r line; do
 
+  [[ -z "$line" || "$line" =~ ^# ]] && continue
+  
+  GITLAB_REPO_URL=$(echo "$line" | awk '{print $1}')
+  GITHUB_REPO_NAME=$(echo "$line" | awk '{print $2}')
+  
+  echo "Repository migration: $GITLAB_REPO_URL -> $GITHUB_REPO_NAME"
+  ./script_migration.sh "$GITLAB_REPO_URL" "$GITHUB_REPO_NAME"
+done < "$INPUT_FILE"
+```
+Now, to start the migration of one repository, use the following command:
+```
+./script_migration.sh "https://gitlab.com/your_group/your_repo.git" "new_github_repo_name"
+```
+To run a mass migration, we run another script with a pre-prepared list in ``list_migration.txt``:
+```
+./all_migration.sh
+```
+That's all, test this script on your test project before using it on production projects.
