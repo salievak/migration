@@ -26,7 +26,7 @@ source ~/.bashrc
 ```
 That's all, now let's move on to implementing the migration script.
 
-# Initializing the project and creating a repository for the script
+# ⚙ Initializing the project and creating a repository for the script
 
 Create a project directory on your machine where all work will take place and initialize a git repository to save the script:
 ```
@@ -40,7 +40,7 @@ touch script_migration.sh
 chmod +x script_migration.sh
 ```
 In the ``script_migration.sh`` file, we write our script for migrating a repository from GitLab to GitHub.
-Let's look at the key points:
+💎 Let's look at the key points:
 - checking for tokens
 ```
 if [[ -z "$GITLAB_TOKEN" || -z "$GITHUB_TOKEN" ]]; then
@@ -98,7 +98,7 @@ log() {
   echo "$(date +'%Y-%m-%d %H:%M:%S') - $1" | tee -a migration.log
 }
 ```
-To implement bulk migrations, you can create a text file that contains the GitLab repositories and the names of the new GitHub repositories:
+💎 To implement bulk migrations, you can create a text file that contains the GitLab repositories and the names of the new GitHub repositories:
 for example ``list_migration.txt``
 ```
 #gitlab_repo_url github_repo_name
@@ -126,4 +126,4 @@ To run a mass migration, we run another script with a pre-prepared list in ``lis
 ```
 ./all_migration.sh
 ```
-That's all, test this script on your test project before using it on production projects.
+⭐ That's all, test this script on your test project before using it on production projects.
